@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Now to see how changes show up
+
 public class Interface extends JFrame implements ChangeListener, ActionListener
 {
 	//need a button panel
