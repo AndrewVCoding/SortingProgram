@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //Now to see how changes show up
+//But what about this?
 
 public class Interface extends JFrame implements ChangeListener, ActionListener
 {
