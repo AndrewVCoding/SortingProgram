@@ -43,7 +43,8 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 	//The table displaying the results
 	JTable TBL_RESULTS = new JTable();
 
-	public Interface() {
+	public Interface()
+	{
 		//Create the layout for the buttons and set their sizes
 		createBtnPanel();
 		createListPanel();
@@ -61,7 +62,8 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 		add(all);
 	}
 
-	public void createBtnPanel() {
+	public void createBtnPanel()
+	{
 		BTN_INSERTION.setText("Insertion Sort");
 		BTN_SELECTION.setText("Selection Sort");
 		BTN_QUICK.setText("Quick Sort");
@@ -99,7 +101,8 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 		//PANEL_BTNS.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 
-	public void createListPanel() {
+	public void createListPanel()
+	{
 		RDO_IN.setText("In Order");
 		RDO_REVERSE.setText("Reverse Order");
 		RDO_ALMOST.setText("Almost Order");
@@ -135,7 +138,7 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 		JPanel rdoButtonPanel = new JPanel();
 
 		/*Set up the radio button panel and its layout
-        O in order     O reverse order
+	    O in order     O reverse order
 		O almost order O random order
 		 */
 		GroupLayout rdoLayout = new GroupLayout(rdoButtonPanel);
@@ -175,15 +178,15 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 		PANEL_LIST_GEN.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 
-	@Override
-	public void stateChanged(ChangeEvent e) {
-		if (e.getSource() == SLIDER_LIST)
+	@Override public void stateChanged(ChangeEvent e)
+	{
+		if(e.getSource() == SLIDER_LIST)
 			TXT_FLD_LIST_ELEMENTS.setText("" + SLIDER_LIST.getValue());
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == TXT_FLD_LIST_ELEMENTS)
+	@Override public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource() == TXT_FLD_LIST_ELEMENTS)
 			SLIDER_LIST.setValue(Integer.parseInt(TXT_FLD_LIST_ELEMENTS.getText()));
 	}
 }
