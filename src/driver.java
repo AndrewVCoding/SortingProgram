@@ -6,7 +6,9 @@ class driver
 	{
 		Interface window = new Interface();
 		window.setVisible(true);
+		window.setTitle("Sorting Algorithms");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setSize(1000, 700);
+		window.setSize(710, 580);
+		window.setResizable(false);
 	}
 }
