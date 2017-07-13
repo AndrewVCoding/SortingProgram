@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class driver
+class driver
 {
 	public static void main(String[] args)
 	{

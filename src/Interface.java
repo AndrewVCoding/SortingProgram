@@ -8,40 +8,44 @@ import java.awt.event.ActionListener;
 //Now to see how changes show up
 //But what about this?
 
-public class Interface extends JFrame implements ChangeListener, ActionListener
+class Interface extends JFrame implements ChangeListener, ActionListener
 {
 	//need a button panel
-	JPanel PANEL_BTNS = new JPanel();
+	private final JPanel PANEL_BTNS = new JPanel();
 	//need a list generator panel
-	JPanel PANEL_LIST_GEN = new JPanel();
+	private final JPanel PANEL_LIST_GEN = new JPanel();
 	//need a report panel
-	JPanel PANEL_REPORT = new JPanel();
+	@SuppressWarnings("unused") JPanel PANEL_REPORT = new JPanel();
 
 	//The six buttons to start each sorting algorithm
-	JButton BTN_INSERTION = new JButton();
-	JButton BTN_SELECTION = new JButton();
-	JButton BTN_QUICK = new JButton();
-	JButton BTN_MERGE = new JButton();
-	JButton BTN_HEAP = new JButton();
-	JButton BTN_RADIX = new JButton();
+	private final JButton BTN_INSERTION = new JButton();
+	private final JButton BTN_SELECTION = new JButton();
+	private final JButton BTN_QUICK = new JButton();
+	private final JButton BTN_MERGE = new JButton();
+	private final JButton BTN_HEAP = new JButton();
+	private final JButton BTN_RADIX = new JButton();
 
 	//The radio buttons for generating each type of list
-	JRadioButton RDO_IN = new JRadioButton();
-	JRadioButton RDO_REVERSE = new JRadioButton();
-	JRadioButton RDO_ALMOST = new JRadioButton();
-	JRadioButton RDO_RANDOM = new JRadioButton();
+	private final JRadioButton RDO_IN = new JRadioButton();
+	private final JRadioButton RDO_REVERSE = new JRadioButton();
+	private final JRadioButton RDO_ALMOST = new JRadioButton();
+	private final JRadioButton RDO_RANDOM = new JRadioButton();
 
 	//Button to create the list
-	JButton BTN_GENERATE_LIST = new JButton();
+	private final JButton BTN_GENERATE_LIST = new JButton();
 
 	//The slider to set the number of elements in the list
-	JSlider SLIDER_LIST = new JSlider(JSlider.HORIZONTAL, 0, 10000, 100);
+	private final JSlider SLIDER_LIST = new JSlider(JSlider.HORIZONTAL, 0, 10000, 100);
 
 	//The text field showing the number of elements
-	JTextField TXT_FLD_LIST_ELEMENTS = new JTextField();
+	private final JTextField TXT_FLD_LIST_ELEMENTS = new JTextField();
 
 	//The table displaying the results
 	JTable TBL_RESULTS = new JTable();
+
+	private int[] testList = Sort.random;
+	private String dataType = "Random Order";
+	private String[] result;
 
 	public Interface()
 	{
@@ -62,7 +66,7 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 		add(all);
 	}
 
-	public void createBtnPanel()
+	private void createBtnPanel()
 	{
 		BTN_INSERTION.setText("Insertion Sort");
 		BTN_SELECTION.setText("Selection Sort");
@@ -77,6 +81,13 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 		BTN_MERGE.setVisible(true);
 		BTN_HEAP.setVisible(true);
 		BTN_RADIX.setVisible(true);
+
+		BTN_INSERTION.addActionListener(this);
+		BTN_SELECTION.addActionListener(this);
+		BTN_QUICK.addActionListener(this);
+		BTN_MERGE.addActionListener(this);
+		BTN_HEAP.addActionListener(this);
+		BTN_RADIX.addActionListener(this);
 
 		BTN_INSERTION.setPreferredSize(new Dimension(200, 80));
 
@@ -101,7 +112,7 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 		//PANEL_BTNS.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 
-	public void createListPanel()
+	private void createListPanel()
 	{
 		RDO_IN.setText("In Order");
 		RDO_REVERSE.setText("Reverse Order");
@@ -109,6 +120,11 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 		RDO_RANDOM.setText("Random Order");
 		TXT_FLD_LIST_ELEMENTS.setText("" + SLIDER_LIST.getValue());
 		TXT_FLD_LIST_ELEMENTS.addActionListener(this);
+
+		RDO_IN.addActionListener(this);
+		RDO_REVERSE.addActionListener(this);
+		RDO_ALMOST.addActionListener(this);
+		RDO_RANDOM.addActionListener(this);
 
 		ButtonGroup rdoButtons = new ButtonGroup();
 		rdoButtons.add(RDO_IN);
@@ -176,6 +192,8 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 		PANEL_LIST_GEN.setLayout(listLayout);
 
 		PANEL_LIST_GEN.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+		RDO_RANDOM.setSelected(true);
 	}
 
 	@Override public void stateChanged(ChangeEvent e)
@@ -188,5 +206,31 @@ public class Interface extends JFrame implements ChangeListener, ActionListener
 	{
 		if(e.getSource() == TXT_FLD_LIST_ELEMENTS)
 			SLIDER_LIST.setValue(Integer.parseInt(TXT_FLD_LIST_ELEMENTS.getText()));
+
+		if(e.getSource() == RDO_RANDOM)
+		{
+			dataType = "Random Order";
+			testList = Sort.random;
+		}
+		if(e.getSource() == RDO_IN)
+		{
+			dataType = "In Order";
+			testList = Sort.inOrder;
+		}
+		if(e.getSource() == RDO_REVERSE)
+		{
+			dataType = "Reverse Order";
+			testList = Sort.reverseOrder;
+		}
+		if(e.getSource() == RDO_ALMOST)
+		{
+			dataType = "Almost Order";
+			testList = Sort.almostOrder;
+		}
+
+		if(e.getSource() == BTN_SELECTION)
+			result = Sort.selectionSort(testList, dataType);
+		if(e.getSource() == BTN_INSERTION)
+			result = Sort.insertionSort(testList, dataType);
 	}
 }
