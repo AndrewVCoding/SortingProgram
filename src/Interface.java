@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 class Interface extends JFrame implements ChangeListener, ActionListener
 {
-	private static final boolean debug = true;
+	private static final boolean debug = false;
 
 	//need a button panel
 	private final JPanel PANEL_BTNS = new JPanel();
@@ -59,7 +59,8 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 	private JTextField TXT_FLD_TOTAL_TIME = new JTextField();
 	private JTextField TXT_FLD_CURRENT_WINNER = new JTextField();
 
-	//To determine the winning algorithm for the current list, multiply the (movements*comparisons)/(number of elements)
+	//To determine the winning algorithm for the current list, multiply the (movements*comparisons)/(number of
+	// elements)
 	private int WINNING_RATIO = 0;
 
 	private int[] testList = Sort.randomOrder.clone();
@@ -402,6 +403,12 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 			displayResults(Sort.insertionSort(testList, dataType));
 		if(e.getSource() == BTN_QUICK)
 			displayResults(Sort.quickSort(testList, dataType));
+		if(e.getSource() == BTN_MERGE)
+			displayResults(Sort.mergeSort(testList, dataType));
+		if(e.getSource() == BTN_HEAP)
+			displayResults(Sort.heapSort(testList, dataType));
+		if(e.getSource() == BTN_RADIX)
+			displayResults(Sort.radixSort(testList, dataType));
 	}
 
 	public void displayResults(String[] results)
@@ -418,8 +425,9 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		int tempRatio = (Integer.parseInt(results[3]) * Integer.parseInt(results[4])) / Integer.parseInt(results[0]);
 
 		if(debug)
-			System.out.println("Winning Ratio: " + WINNING_RATIO + "\nCurrent Ratio: " + tempRatio + " = (" + Integer
-					.parseInt(results[3]) + " * " + Integer.parseInt(results[4]) + ") / " + Integer.parseInt(results[0]));
+			System.out.println("Winning Ratio: " + WINNING_RATIO + "\nCurrent Ratio: " + tempRatio + " = (" +
+			                   Integer.parseInt(results[3]) + " * " + Integer.parseInt(results[4]) + ") / " +
+			                   Integer.parseInt(results[0]));
 
 		if(tempRatio < WINNING_RATIO || WINNING_RATIO == 0)
 		{
@@ -431,36 +439,40 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		if(RDO_IN.isSelected())
 		{
 			testList = Sort.inOrder.clone();
-			if(debug){
+			if(debug)
+			{
 				System.out.println("Resetting testList to inOrder: ");
-				for(int i: Sort.inOrder)
+				for(int i : Sort.inOrder)
 					System.out.print(" " + i);
 			}
 		}
 		if(RDO_REVERSE.isSelected())
 		{
 			testList = Sort.reverseOrder.clone();
-			if(debug){
+			if(debug)
+			{
 				System.out.println("Resetting testList to reverseOrder: ");
-				for(int i: Sort.reverseOrder)
+				for(int i : Sort.reverseOrder)
 					System.out.print(" " + i);
 			}
 		}
 		if(RDO_ALMOST.isSelected())
 		{
 			testList = Sort.almostOrder.clone();
-			if(debug){
+			if(debug)
+			{
 				System.out.println("Resetting testList to almostOrder: ");
-				for(int i: Sort.almostOrder)
+				for(int i : Sort.almostOrder)
 					System.out.print(" " + i);
 			}
 		}
 		if(RDO_RANDOM.isSelected())
 		{
 			testList = Sort.randomOrder.clone();
-			if(debug){
+			if(debug)
+			{
 				System.out.println("Resetting testList to randomOrder: ");
-				for(int i: Sort.randomOrder)
+				for(int i : Sort.randomOrder)
 					System.out.print(" " + i);
 			}
 		}
