@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7b2230f4-42df-4d48-a385-0172a0561545" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GenerateList.java" afterPath="$PROJECT_DIR$/src/GenerateList.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Interface.java" afterPath="$PROJECT_DIR$/src/Interface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Sort.java" afterPath="$PROJECT_DIR$/src/Sort.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +28,8 @@
       <file leaf-file-name="Interface.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Interface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="566" column="52" lean-forward="false" selection-start-line="566" selection-start-column="52" selection-end-line="566" selection-end-column="52" />
+            <state relative-caret-position="433">
+              <caret line="571" column="0" lean-forward="true" selection-start-line="571" selection-start-column="0" selection-end-line="571" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Interface#0;class#Interface#0" expanded="false" />
@@ -443,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1500046280720</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="The ratio calculation has been redone, so now all ratios fall between 0 and 1. A high weight has been given to time and movements, while comparisons have a lower weight in determining the ratio.">
+      <created>1500060476720</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1500060476720</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -493,7 +498,8 @@
     <MESSAGE value="All sorting algorithms are working.&#10;List Generator is working&#10;Results are displaying correctly&#10;The program currently meets the minimum requirements!" />
     <MESSAGE value="Radix Sort is incredibly poor the way I've implemented it. Need to make it better... Much better." />
     <MESSAGE value="This implements a much better implementation of radix sort that is actually competitive with quick sort." />
-    <option name="LAST_COMMIT_MESSAGE" value="This implements a much better implementation of radix sort that is actually competitive with quick sort." />
+    <MESSAGE value="The ratio calculation has been redone, so now all ratios fall between 0 and 1. A high weight has been given to time and movements, while comparisons have a lower weight in determining the ratio." />
+    <option name="LAST_COMMIT_MESSAGE" value="The ratio calculation has been redone, so now all ratios fall between 0 and 1. A high weight has been given to time and movements, while comparisons have a lower weight in determining the ratio." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -688,8 +694,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Interface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="566" column="52" lean-forward="false" selection-start-line="566" selection-start-column="52" selection-end-line="566" selection-end-column="52" />
+        <state relative-caret-position="433">
+          <caret line="571" column="0" lean-forward="true" selection-start-line="571" selection-start-column="0" selection-end-line="571" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Interface#0;class#Interface#0" expanded="false" />

@@ -561,15 +561,15 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 	{
 		//First bring all values lower to be more manageable
 		//Movements are given a higher weight than comparisons since they are more expensive
-		double mNormal = (m) / (Math.abs(m) + (1 * n));
+		double mNormal = (m) / (Math.abs(m) + (0.1 * n));
 		double cNormal = (c) / (Math.abs(c) + (1 * n));
 		//Time should also be an important factor with high weight
-		double tNormal = (t) / (Math.abs(t) + (0.0001 * n));
+		double tNormal = (t) / (Math.abs(t) + (0.00001 * n));
 		if(debug)
 			System.out.println(
 					"\nData Type: " + DATA_TYPE + "\nSorting Algorithm: " + alg + "\nm: " + m + " => " + mNormal +
 					"\nc: " + c + " => " + "" + cNormal + "\nt: " + t + " =>" + " " + tNormal);
 
-		return (2 * mNormal + cNormal + 3 * tNormal) / 6;
+		return (3 * mNormal + cNormal + 2 * tNormal) / 6;
 	}
 }
