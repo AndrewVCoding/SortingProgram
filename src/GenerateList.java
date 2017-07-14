@@ -3,11 +3,11 @@
  */
 public class GenerateList
 {
-	private static boolean debug = true;
+	private static boolean debug = false;
 	/**
 	 * used to increase the size of the numbers generated within the arrays
 	 */
-	private static int multiplier = 100;
+	private static int multiplier = 1000;
 
 	/**
 	 * Generates an ordered array of unique integers ranging from 0-length

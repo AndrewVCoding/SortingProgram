@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 class Interface extends JFrame implements ChangeListener, ActionListener
 {
-	private static final boolean debug = true;
+	private static final boolean debug = false;
 
 	//need a button panel
 	private final JPanel PANEL_BTNS = new JPanel();
@@ -425,7 +425,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		if(e.getSource() == BTN_HEAP)
 			displayResults(Sort.heapSort(WORKING_LIST.clone(), DATA_TYPE));
 		if(e.getSource() == BTN_RADIX)
-			displayResults(Sort.radixSort(WORKING_LIST.clone(), DATA_TYPE));
+			displayResults(Sort.betterRadixSort(WORKING_LIST.clone(), DATA_TYPE));
 
 		if(e.getSource() == BTN_GENERATE_LIST)
 		{

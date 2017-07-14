@@ -10,7 +10,7 @@ public class Sort
 	static private int length;
 	static private int[] tempMergArr;
 
-	static private boolean debug = true;
+	static private boolean debug = false;
 
 	/**
 	 * Performs Insertion Sort on the given array of integers
@@ -395,115 +395,10 @@ public class Sort
 
 	/**
 	 * Performs Radix Sort on an array of integers
-	 *
 	 * @param arrayIn
 	 * @param dataType
 	 * @return
 	 */
-	public static String[] radixSort(int[] arrayIn, String dataType)
-	{
-		array = arrayIn;
-		if(debug)
-			printArray();
-
-		comparisons = 0;
-		movements = 0;
-
-		start = System.currentTimeMillis();
-		//Start Algorithm here*****************************************************************************************
-		Bucket[] buckets = {new Bucket(),
-		                    new Bucket(),
-		                    new Bucket(),
-		                    new Bucket(),
-		                    new Bucket(),
-		                    new Bucket(),
-		                    new Bucket(),
-		                    new Bucket(),
-		                    new Bucket(),
-		                    new Bucket()};
-
-		//While any numbers in the array are not returning 0 from %10
-		int iteration = 1;
-		boolean keepSorting = true;
-		while(keepSorting)
-		{
-			//Assume the array is sorted unless encountering an item that does not go into the first bucket
-			keepSorting = false;
-
-			//push each element in the array to the end of the corresponding bucket
-			for(int i : array)
-			{
-				int temp = i;
-				int index = 0;
-
-				//for whichever iteration this is, divide the temporary number by 10
-				for(int j = 1; j <= iteration; j++)
-				{
-					comparisons++;
-					index = temp % 10;
-					temp = temp / 10;
-				}
-
-
-				/*If any index is encountered that is not 0 after this iteration, keep sorting. Otherwise it is
-				already sorted.
-				EXAMPLE: i = 354
-				      1: 354%10 = 4    354/10 = 35
-				      2:  35%10 = 5     35/10 = 3
-				      3:   3%10 = 3      3/10 = 0
-				      4:   0%10 = 0      0/10 = 0
-
-				Except this obviously won't work if all the numbers happen to have a 0 in the same place...
-				Instead it should be temp...
-				*/
-				if(temp != 0)
-					keepSorting = true;
-
-				//Create a new bucket with the value
-				Bucket push = new Bucket();
-				push.value = i;
-
-				//push it into the corresponding index
-				movements++;
-				Bucket target = buckets[index];
-				while(target.next != null)
-				{
-					target = target.next;
-				}
-				target.next = push;
-			}
-
-			//For each bucket, pop values into the array
-			int index = 0;
-			for(Bucket b : buckets)
-			{
-				while(b.next != null)
-				{
-					movements++;
-					array[index] = b.next.value;
-					if(b.next.next != null)
-						b.next = b.next.next;
-					else
-						b.next = null;
-					index++;
-				}
-			}
-
-			//Move on to the next iteration
-			iteration++;
-		}
-
-		end = System.currentTimeMillis();
-		//Algorithm is finished****************************************************************************************
-		if(debug)
-			printArray();
-
-		time = end - start;
-
-		return new String[]{"" + array.length, dataType, "Radix Sort", "" + comparisons, "" + movements, "" + time};
-	}
-
-	// TODO: 07/13/2017 MAKE A BETTER RADIX FUNCTION!
 	public static String[] betterRadixSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
@@ -516,7 +411,58 @@ public class Sort
 		start = System.currentTimeMillis();
 		//Start Algorithm here*****************************************************************************************
 
-		int e = 0;
+		int i;
+		int m = array[0];
+		int exp = 1;
+		int n = array.length;
+		int[] b = new int[n];
+
+		//Find the largest value in the array
+		for(i = 1; i < n; i++)
+		{
+			comparisons++;
+			if(array[i] > m)
+			{
+				movements++;
+				m = array[i];
+			}
+		}
+
+		//While the exp does not exceed the number of digits in the largest number
+		comparisons++;
+		while(m / exp > 0)
+		{
+			comparisons++;
+			int[] bucket = new int[10];
+
+			//for every element in the array, add 1 to the number at the corresponding index of the bucket.
+			for(i = 0; i < n; i++)
+			{
+				movements++;
+				bucket[(array[i] / exp) % 10]++;
+			}
+			//for indices 1-9, set bucket element + the previous bucket element
+			for(i = 1; i < 10; i++)
+			{
+				movements++;
+				bucket[i] += bucket[i - 1];
+			}
+			//Starting at the last element of the array, take the comparison digit as the corresponding index of the
+			// bucket. Use the element in the bucket as the index of the new array to put the original element in.
+			for(i = n - 1; i >= 0; i--)
+			{
+				movements++;
+				b[--bucket[(array[i] / exp) % 10]] = array[i];
+			}
+			for(i = 0; i < n; i++)
+			{
+				movements++;
+				array[i] = b[i];
+			}
+
+			//move to the next digit
+			exp *= 10;
+		}
 
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
