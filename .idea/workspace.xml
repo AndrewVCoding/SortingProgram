@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b2230f4-42df-4d48-a385-0172a0561545" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SortDebugMode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Interface.java" afterPath="$PROJECT_DIR$/src/Interface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Sort.java" afterPath="$PROJECT_DIR$/src/Sort.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,8 +29,8 @@
       <file leaf-file-name="Interface.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Interface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="408" column="0" lean-forward="false" selection-start-line="408" selection-start-column="0" selection-end-line="408" selection-end-column="0" />
+            <state relative-caret-position="549">
+              <caret line="400" column="50" lean-forward="false" selection-start-line="400" selection-start-column="50" selection-end-line="400" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Interface#0;class#Interface#0" expanded="false" />
@@ -46,19 +46,28 @@
       <file leaf-file-name="Sort.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Sort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="47">
-              <caret line="362" column="4" lean-forward="false" selection-start-line="362" selection-start-column="4" selection-end-line="362" selection-end-column="4" />
+            <state relative-caret-position="52">
+              <caret line="482" column="9" lean-forward="true" selection-start-line="482" selection-start-column="9" selection-end-line="482" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SortDebugMode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SortDebugMode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-80">
+              <caret line="8" column="46" lean-forward="true" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
               <folding>
-                <element signature="method#selectionSort#0;class#Sort#0" expanded="false" />
-                <element signature="method#insertionSort#0;class#Sort#0" expanded="false" />
-                <element signature="method#quickSort#0;class#Sort#0" expanded="false" />
-                <element signature="method#quickSortRecursive#0;class#Sort#0" expanded="false" />
-                <element signature="method#exchangeNumbers#0;class#Sort#0" expanded="false" />
-                <element signature="method#mergeSort#0;class#Sort#0" expanded="false" />
-                <element signature="method#mergeSortRecursive#0;class#Sort#0" expanded="false" />
-                <element signature="method#mergeParts#0;class#Sort#0" expanded="false" />
-                <element signature="method#heapSort#0;class#Sort#0" expanded="false" />
-                <element signature="method#heapify#0;class#Sort#0" expanded="false" />
+                <element signature="method#quickSort#0;class#SortDebugMode#0" expanded="false" />
+                <element signature="method#quickSortRecursive#0;class#SortDebugMode#0" expanded="false" />
+                <element signature="method#exchangeNumbers#0;class#SortDebugMode#0" expanded="false" />
+                <element signature="method#mergeSort#0;class#SortDebugMode#0" expanded="false" />
+                <element signature="method#mergeSortRecursive#0;class#SortDebugMode#0" expanded="false" />
+                <element signature="method#mergeParts#0;class#SortDebugMode#0" expanded="false" />
+                <element signature="method#heapSort#0;class#SortDebugMode#0" expanded="false" />
+                <element signature="method#heapify#0;class#SortDebugMode#0" expanded="false" />
+                <element signature="method#radixSort#0;class#SortDebugMode#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -87,6 +96,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/driver.java" />
         <option value="$PROJECT_DIR$/src/Interface.java" />
+        <option value="$PROJECT_DIR$/src/SortDebugMode.java" />
         <option value="$PROJECT_DIR$/src/Sort.java" />
       </list>
     </option>
@@ -346,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499970222907</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="All sorting algorithms are working except for Radix.&#10;After that, I still need to develop the list generator.">
+      <created>1499989331285</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1499989331285</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -363,7 +380,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.4978678" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18443497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -391,11 +408,12 @@
     <MESSAGE value="added code style settings to project" />
     <MESSAGE value="Added debug mode to Sort.class to output info when sorting and added four test lists to perform the different sorting algorithms on. &#10;Both Insertion and Selection sort work on those lists now. Need to set up the other algorithms and get them working as well as implement the list generator and create the report panel." />
     <MESSAGE value="The full GUI is now in place.&#10;Insertion, Selection, and Quick sort are working on all four lists.&#10;Reports correctly display and and if you stay on the same list and try different algorithms it correctly displays the one that performs the least comparisons/movements per item in the list.&#10;Next I need to put in the rest of the sorting algorithms." />
-    <option name="LAST_COMMIT_MESSAGE" value="The full GUI is now in place.&#10;Insertion, Selection, and Quick sort are working on all four lists.&#10;Reports correctly display and and if you stay on the same list and try different algorithms it correctly displays the one that performs the least comparisons/movements per item in the list.&#10;Next I need to put in the rest of the sorting algorithms." />
+    <MESSAGE value="All sorting algorithms are working except for Radix.&#10;After that, I still need to develop the list generator." />
+    <option name="LAST_COMMIT_MESSAGE" value="All sorting algorithms are working except for Radix.&#10;After that, I still need to develop the list generator." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -416,18 +434,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#selectionSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#insertionSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#quickSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#quickSortRecursive#0;class#Sort#0" expanded="false" />
-            <element signature="method#exchangeNumbers#0;class#Sort#0" expanded="false" />
-            <element signature="method#mergeSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#mergeSortRecursive#0;class#Sort#0" expanded="false" />
-            <element signature="method#mergeParts#0;class#Sort#0" expanded="false" />
-            <element signature="method#heapSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#heapify#0;class#Sort#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -456,8 +463,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Interface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="408" column="0" lean-forward="false" selection-start-line="408" selection-start-column="0" selection-end-line="408" selection-end-column="0" />
+        <state relative-caret-position="549">
+          <caret line="400" column="50" lean-forward="false" selection-start-line="400" selection-start-column="50" selection-end-line="400" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Interface#0;class#Interface#0" expanded="false" />
@@ -469,22 +476,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SortDebugMode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-80">
+          <caret line="8" column="46" lean-forward="true" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+          <folding>
+            <element signature="method#quickSort#0;class#SortDebugMode#0" expanded="false" />
+            <element signature="method#quickSortRecursive#0;class#SortDebugMode#0" expanded="false" />
+            <element signature="method#exchangeNumbers#0;class#SortDebugMode#0" expanded="false" />
+            <element signature="method#mergeSort#0;class#SortDebugMode#0" expanded="false" />
+            <element signature="method#mergeSortRecursive#0;class#SortDebugMode#0" expanded="false" />
+            <element signature="method#mergeParts#0;class#SortDebugMode#0" expanded="false" />
+            <element signature="method#heapSort#0;class#SortDebugMode#0" expanded="false" />
+            <element signature="method#heapify#0;class#SortDebugMode#0" expanded="false" />
+            <element signature="method#radixSort#0;class#SortDebugMode#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Sort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="362" column="4" lean-forward="false" selection-start-line="362" selection-start-column="4" selection-end-line="362" selection-end-column="4" />
-          <folding>
-            <element signature="method#selectionSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#insertionSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#quickSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#quickSortRecursive#0;class#Sort#0" expanded="false" />
-            <element signature="method#exchangeNumbers#0;class#Sort#0" expanded="false" />
-            <element signature="method#mergeSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#mergeSortRecursive#0;class#Sort#0" expanded="false" />
-            <element signature="method#mergeParts#0;class#Sort#0" expanded="false" />
-            <element signature="method#heapSort#0;class#Sort#0" expanded="false" />
-            <element signature="method#heapify#0;class#Sort#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="52">
+          <caret line="482" column="9" lean-forward="true" selection-start-line="482" selection-start-column="9" selection-end-line="482" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

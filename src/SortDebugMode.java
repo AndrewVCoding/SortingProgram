@@ -1,5 +1,12 @@
-public class Sort
+/**
+ * It was becoming clear that the amount of debug checks was slowing down some of the more complex sorting
+ * algorithms, namely Heap and Radix. So in order to keep the time measurements accurate, the final version of the
+ * program will use a class that has no debug conditions. Instead I will match the code here and use this class for
+ * debugging the algorithms if any new bugs come up.
+ */
+public class SortDebugMode
 {
+	private static final boolean debug = true;
 
 	//Test lists to use
 	static final int[] inOrder = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
@@ -27,7 +34,12 @@ public class Sort
 	public static String[] insertionSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
-		printArray();
+
+		if(debug)
+		{
+			System.out.println("\n\nInput Array: ");
+			printArray();
+		}
 
 		comparisons = 0;
 		movements = 0;
@@ -54,9 +66,18 @@ public class Sort
 		}
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
 
 		time = end - start;
+
+		if(debug)
+		{
+			System.out.println("Start Time: " + start + "\nEnd Time: " + end);
+			System.out.println("Sorted Array:");
+			printArray();
+			System.out.println();
+			System.out.println("Length: " + array.length + "\nData Type: " + dataType + "\nAlgorithm: Insertion Sort" +
+			                   "\nComparisons: " + comparisons + "\nMovements: " + movements + "\nTime: " + time);
+		}
 
 		return new String[]{"" + array.length, dataType, "Insertion Sort", "" + comparisons, "" + movements, "" +
 		                                                                                                     time};
@@ -72,7 +93,12 @@ public class Sort
 	public static String[] selectionSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
-		printArray();
+
+		if(debug)
+		{
+			System.out.println("\n\nInput Array: ");
+			printArray();
+		}
 
 		comparisons = 0;
 		movements = 0;
@@ -104,10 +130,18 @@ public class Sort
 		}
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
 
 		time = end - start;
 
+		if(debug)
+		{
+			System.out.println("Start Time: " + start + "\nEnd Time: " + end);
+			System.out.println("Sorted Array:");
+			printArray();
+			System.out.println();
+			System.out.println("Length: " + array.length + "\nData Type: " + dataType + "\nAlgorithm: Selection Sort" +
+			                   "\nComparisons: " + comparisons + "\nMovements: " + movements + "\nTime: " + time);
+		}
 		return new String[]{"" + array.length, dataType, "Selection Sort", "" + comparisons, "" + movements, "" +
 		                                                                                                     time};
 	}
@@ -121,21 +155,34 @@ public class Sort
 	 */
 	public static String[] quickSort(int[] arrayIn, String dataType)
 	{
-		array = arrayIn;
-		printArray();
+		if(debug)
+		{
+			System.out.println("\n\nInput Array: ");
+			printArray();
+		}
 
 		comparisons = 0;
 		movements = 0;
 
 		start = System.currentTimeMillis();
 		//Start Algorithm here*****************************************************************************************
+		array = arrayIn;
 		quickSortRecursive(0, array.length - 1);
 
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
 
 		time = end - start;
+
+		if(debug)
+		{
+			System.out.println("Start Time: " + start + "\nEnd Time: " + end);
+			System.out.println("Sorted Array:");
+			printArray();
+			System.out.println();
+			System.out.println("Length: " + array.length + "\nData Type: " + dataType + "\nAlgorithm: Quick Sort" +
+			                   "\nComparisons: " + comparisons + "\nMovements: " + movements + "\nTime: " + time);
+		}
 
 		return new String[]{"" + array.length, dataType, "Quick Sort", "" + comparisons, "" + movements, "" + time};
 	}
@@ -214,8 +261,11 @@ public class Sort
 	 */
 	public static String[] mergeSort(int[] arrayIn, String dataType)
 	{
-		array = arrayIn;
-		printArray();
+		if(debug)
+		{
+			System.out.println("\n\nInput Array: ");
+			printArray();
+		}
 
 		comparisons = 0;
 		movements = 0;
@@ -223,15 +273,25 @@ public class Sort
 		start = System.currentTimeMillis();
 
 		//Start Algorithm here*****************************************************************************************
-		length = array.length;
+		array = arrayIn;
+		length = arrayIn.length;
 		tempMergArr = new int[length];
 		mergeSortRecursive(0, length - 1);
 
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
 
 		time = end - start;
+
+		if(debug)
+		{
+			System.out.println("Start Time: " + start + "\nEnd Time: " + end);
+			System.out.println("Sorted Array:");
+			printArray();
+			System.out.println();
+			System.out.println("Length: " + array.length + "\nData Type: " + dataType + "\nAlgorithm: Merge Sort" +
+			                   "\nComparisons: " + comparisons + "\nMovements: " + movements + "\nTime: " + time);
+		}
 
 		return new String[]{"" + array.length, dataType, "Merge Sort", "" + comparisons, "" + movements, "" + time};
 	}
@@ -312,7 +372,11 @@ public class Sort
 	public static String[] heapSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
-		printArray();
+		if(debug)
+		{
+			System.out.println("\n\nInput Array: ");
+			printArray();
+		}
 
 		comparisons = 0;
 		movements = 0;
@@ -325,12 +389,16 @@ public class Sort
 		//Build the heap
 		for(int i = n / 2 - 1; i >= 0; i--)
 		{
+			if(debug)
+				System.out.println("\nHeapifying\n     n: " + n + "\n     i: "+ i);
 			heapify(n, i);
 		}
 
 		//Extract each element from the heap
 		for (int i=n-1; i>=0; i--)
 		{
+			if(debug)
+				System.out.println("Extracting Element: " + array[i]);
 			// Move current root to end
 			int temp = array[0];
 			array[0] = array[i];
@@ -342,9 +410,18 @@ public class Sort
 
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
 
 		time = end - start;
+
+		if(debug)
+		{
+			System.out.println("Start Time: " + start + "\nEnd Time: " + end);
+			System.out.println("Sorted Array:");
+			printArray();
+			System.out.println();
+			System.out.println("Length: " + array.length + "\nData Type: " + dataType + "\nAlgorithm: Heap Sort" +
+			                   "\nComparisons: " + comparisons + "\nMovements: " + movements + "\nTime: " + time);
+		}
 
 		return new String[]{"" + array.length, dataType, "Heap Sort", "" + comparisons, "" + movements, "" + time};
 	}
@@ -361,10 +438,18 @@ public class Sort
 		int l = 2 * i + 1;
 		int r = 2 * i + 2;
 
+		if(debug)
+		{
+			printArray();
+			System.out.println("\nlargest = " + i + "\nl = " + l + "\nr = " + r);
+		}
+
 		//Left child is larger than root
 		comparisons++;
 		if(l < n && array[l] > array[largest])
 		{
+			if(debug)
+				System.out.println("left child is larger than root: " + array[1] + " > " + array[largest]);
 			largest = l;
 		}
 
@@ -372,6 +457,8 @@ public class Sort
 		comparisons++;
 		if(r < n && array[r] > array[largest])
 		{
+			if(debug)
+				System.out.println("right child is larger than root: " + array[r] + " > " + array[largest]);
 			largest = r;
 		}
 
@@ -379,6 +466,8 @@ public class Sort
 		comparisons++;
 		if(largest != i)
 		{
+			if(debug)
+				System.out.println("Swapping " + array[i] + " with " + array[largest]);
 			int swap = array[i];
 			array[i] = array[largest];
 			array[largest] = swap;
@@ -396,14 +485,18 @@ public class Sort
 	 */
 	public static String[] radixSort(int[] arrayIn, String dataType)
 	{
-		array = arrayIn;
-		printArray();
+		if(debug)
+		{
+			System.out.println("\n\nInput Array: ");
+			printArray();
+		}
 
 		comparisons = 0;
 		movements = 0;
 
 		start = System.currentTimeMillis();
 		//Start Algorithm here*****************************************************************************************
+		array = arrayIn;
 		Bucket[] buckets = {new Bucket(),
 		                    new Bucket(),
 		                    new Bucket(),
@@ -420,6 +513,8 @@ public class Sort
 		boolean keepSorting = true;
 		while(keepSorting)
 		{
+			if(debug)
+				System.out.println("\nKeep Sorting is still true");
 			//Assume the array is sorted unless encountering an item that does not go into the first bucket
 			keepSorting = false;
 
@@ -436,6 +531,9 @@ public class Sort
 					index = temp % 10;
 					temp = temp / 10;
 				}
+
+				if(debug)
+					System.out.println("Pushing " + i + " to index " + index);
 
 				/*If any index is encountered that is not 0 after this iteration, keep sorting. Otherwise it is
 				already sorted.
@@ -457,8 +555,12 @@ public class Sort
 				Bucket target = buckets[index];
 				while(target.next != null)
 				{
+					if(debug)
+						System.out.println(i + " is below " + target.value);
 					target = target.next;
 				}
+				if(debug)
+					System.out.println("reached end of bucket, inserting " + push.value);
 				target.next = push;
 			}
 
@@ -478,15 +580,30 @@ public class Sort
 				}
 			}
 
+			if(debug)
+			{
+				System.out.println("Iteration " + iteration + ": ");
+				printArray();
+			}
+
 			//Move on to the next iteration
 			iteration++;
 		}
 
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
 
 		time = end - start;
+
+		if(debug)
+		{
+			System.out.println("Start Time: " + start + "\nEnd Time: " + end);
+			System.out.println("Sorted Array:");
+			printArray();
+			System.out.println();
+			System.out.println("Length: " + array.length + "\nData Type: " + dataType + "\nAlgorithm: Radix Sort" +
+			                   "\nComparisons: " + comparisons + "\nMovements: " + movements + "\nTime: " + time);
+		}
 
 		return new String[]{"" + array.length, dataType, "Radix Sort", "" + comparisons, "" + movements, "" + time};
 	}
@@ -508,3 +625,4 @@ public class Sort
 		int value;
 	}
 }
+
