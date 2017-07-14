@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 class Interface extends JFrame implements ChangeListener, ActionListener
 {
-	private static final boolean debug = false;
+	private static final boolean debug = true;
 
 	//need a button panel
 	private final JPanel PANEL_BTNS = new JPanel();
@@ -38,7 +38,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 	private final JButton BTN_GENERATE_LIST = new JButton();
 
 	//The slider to set the number of elements in the list
-	private final JSlider SLIDER_LIST = new JSlider(JSlider.HORIZONTAL, 0, 10000, 5000);
+	private final JSlider SLIDER_LIST = new JSlider(JSlider.HORIZONTAL, 0, 30000, 5000);
 
 	//The text field showing the number of elements
 	private final JTextField TXT_FLD_LIST_ELEMENTS = new JTextField();
@@ -61,10 +61,24 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 
 	//To determine the winning algorithm for the current list, multiply the (movements*comparisons)/(number of
 	// elements)
-	private int WINNING_RATIO = 0;
+	private int IN_ORDER_RATIO = 0;
+	private int RE_ORDER_RATIO = 0;
+	private int AL_ORDER_RATIO = 0;
+	private int RA_ORDER_RATIO = 0;
 
-	private int[] testList = Sort.randomOrder.clone();
-	private String dataType = "Random Order";
+	private String IN_ORDER_WINNER = "No algorithms have been run on this list";
+	private String RE_ORDER_WINNER = "No algorithms have been run on this list";
+	private String AL_ORDER_WINNER = "No algorithms have been run on this list";
+	private String RA_ORDER_WINNER = "No algorithms have been run on this list";
+
+	private int[] IN_ORDER_LIST;
+	private int[] RE_ORDER_LIST;
+	private int[] AL_ORDER_LIST;
+	private int[] RA_ORDER_LIST;
+
+	private String DATA_TYPE;
+	private int[] WORKING_LIST;
+	private int WORKING_RATIO;
 
 	public Interface()
 	{
@@ -100,6 +114,16 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		all.setLayout(frameLayout);
 
 		add(all);
+
+		//Generate an initial list of numbers of each data type
+		IN_ORDER_LIST = GenerateList.inOrder(SLIDER_LIST.getValue());
+		RE_ORDER_LIST = GenerateList.reverseOrder(SLIDER_LIST.getValue());
+		AL_ORDER_LIST = GenerateList.almostOrder(SLIDER_LIST.getValue());
+		RA_ORDER_LIST = GenerateList.randomOrder(SLIDER_LIST.getValue());
+
+		WORKING_LIST = RA_ORDER_LIST.clone();
+		WORKING_RATIO = RA_ORDER_RATIO;
+		DATA_TYPE = "Random Order";
 	}
 
 	private void createBtnPanel()
@@ -166,6 +190,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		RDO_REVERSE.addActionListener(this);
 		RDO_ALMOST.addActionListener(this);
 		RDO_RANDOM.addActionListener(this);
+		BTN_GENERATE_LIST.addActionListener(this);
 
 		ButtonGroup rdoButtons = new ButtonGroup();
 		rdoButtons.add(RDO_IN);
@@ -352,63 +377,92 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 	@Override public void stateChanged(ChangeEvent e)
 	{
 		if(e.getSource() == SLIDER_LIST)
-		{
 			TXT_FLD_LIST_ELEMENTS.setText("" + SLIDER_LIST.getValue());
-			WINNING_RATIO = 0;
-			TXT_FLD_CURRENT_WINNER.setText("No algorithm has been run on this list yet");
-		}
 	}
 
 	@Override public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == TXT_FLD_LIST_ELEMENTS)
-		{
 			SLIDER_LIST.setValue(Integer.parseInt(TXT_FLD_LIST_ELEMENTS.getText()));
-			WINNING_RATIO = 0;
-			TXT_FLD_CURRENT_WINNER.setText("No algorithm has been run on this list yet");
-		}
 
-		if(e.getSource() == RDO_RANDOM)
-		{
-			dataType = "Random Order";
-			testList = Sort.randomOrder.clone();
-			WINNING_RATIO = 0;
-			TXT_FLD_CURRENT_WINNER.setText("No algorithm has been run on this list yet");
-		}
 		if(e.getSource() == RDO_IN)
 		{
-			dataType = "In Order";
-			testList = Sort.inOrder.clone();
-			WINNING_RATIO = 0;
-			TXT_FLD_CURRENT_WINNER.setText("No algorithm has been run on this list yet");
+			DATA_TYPE = "In Order";
+			TXT_FLD_CURRENT_WINNER.setText(IN_ORDER_WINNER);
+			WORKING_LIST = IN_ORDER_LIST;
+			WORKING_RATIO = IN_ORDER_RATIO;
 		}
 		if(e.getSource() == RDO_REVERSE)
 		{
-			dataType = "Reverse Order";
-			testList = Sort.reverseOrder.clone();
-			WINNING_RATIO = 0;
-			TXT_FLD_CURRENT_WINNER.setText("No algorithm has been run on this list yet");
+			DATA_TYPE = "Reverse Order";
+			TXT_FLD_CURRENT_WINNER.setText(RE_ORDER_WINNER);
+			WORKING_LIST = RE_ORDER_LIST;
+			WORKING_RATIO = RE_ORDER_RATIO;
 		}
 		if(e.getSource() == RDO_ALMOST)
 		{
-			dataType = "Almost Order";
-			testList = Sort.almostOrder.clone();
-			WINNING_RATIO = 0;
-			TXT_FLD_CURRENT_WINNER.setText("No algorithm has been run on this list yet");
+			DATA_TYPE = "Almost Order";
+			TXT_FLD_CURRENT_WINNER.setText(AL_ORDER_WINNER);
+			WORKING_LIST = AL_ORDER_LIST;
+			WORKING_RATIO = AL_ORDER_RATIO;
+		}
+		if(e.getSource() == RDO_RANDOM)
+		{
+			DATA_TYPE = "Random Order";
+			TXT_FLD_CURRENT_WINNER.setText(RA_ORDER_WINNER);
+			WORKING_LIST = RA_ORDER_LIST;
+			WORKING_RATIO = RA_ORDER_RATIO;
 		}
 
 		if(e.getSource() == BTN_SELECTION)
-			displayResults(Sort.selectionSort(testList, dataType));
+			displayResults(Sort.selectionSort(WORKING_LIST.clone(), DATA_TYPE));
 		if(e.getSource() == BTN_INSERTION)
-			displayResults(Sort.insertionSort(testList, dataType));
+			displayResults(Sort.insertionSort(WORKING_LIST.clone(), DATA_TYPE));
 		if(e.getSource() == BTN_QUICK)
-			displayResults(Sort.quickSort(testList, dataType));
+			displayResults(Sort.quickSort(WORKING_LIST.clone(), DATA_TYPE));
 		if(e.getSource() == BTN_MERGE)
-			displayResults(Sort.mergeSort(testList, dataType));
+			displayResults(Sort.mergeSort(WORKING_LIST.clone(), DATA_TYPE));
 		if(e.getSource() == BTN_HEAP)
-			displayResults(Sort.heapSort(testList, dataType));
+			displayResults(Sort.heapSort(WORKING_LIST.clone(), DATA_TYPE));
 		if(e.getSource() == BTN_RADIX)
-			displayResults(Sort.radixSort(testList, dataType));
+			displayResults(Sort.radixSort(WORKING_LIST.clone(), DATA_TYPE));
+
+		if(e.getSource() == BTN_GENERATE_LIST)
+		{
+			switch(DATA_TYPE)
+			{
+				case("In Order"):
+					IN_ORDER_LIST = GenerateList.inOrder(SLIDER_LIST.getValue());
+					WORKING_LIST = IN_ORDER_LIST;
+					IN_ORDER_RATIO = 0;
+					IN_ORDER_WINNER = "No algorithm has been run on this list yet";
+					TXT_FLD_CURRENT_WINNER.setText(IN_ORDER_WINNER);
+					break;
+				case("Reverse Order"):
+					RE_ORDER_LIST = GenerateList.reverseOrder(SLIDER_LIST.getValue());
+					WORKING_LIST = RE_ORDER_LIST;
+					RE_ORDER_RATIO = 0;
+					RE_ORDER_WINNER = "No algorithm has been run on this list yet";
+					TXT_FLD_CURRENT_WINNER.setText(RE_ORDER_WINNER);
+					break;
+				case("Almost Order"):
+					AL_ORDER_LIST = GenerateList.almostOrder(SLIDER_LIST.getValue());
+					WORKING_LIST = AL_ORDER_LIST;
+					AL_ORDER_RATIO = 0;
+					AL_ORDER_WINNER = "No algorithm has been run on this list yet";
+					TXT_FLD_CURRENT_WINNER.setText(AL_ORDER_WINNER);
+					break;
+				case("Random Order"):
+					RA_ORDER_LIST = GenerateList.randomOrder(SLIDER_LIST.getValue());
+					WORKING_LIST = RA_ORDER_LIST;
+					RA_ORDER_RATIO = 0;
+					RA_ORDER_WINNER = "No algorithm has been run on this list yet";
+					TXT_FLD_CURRENT_WINNER.setText(RA_ORDER_WINNER);
+					break;
+			}
+			WORKING_RATIO = 0;
+			TXT_FLD_CURRENT_WINNER.setText("No algorithm has been run on this list yet");
+		}
 	}
 
 	public void displayResults(String[] results)
@@ -423,58 +477,37 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		//If the ratio is better than the current winning ratio, or if there is no winning ratio yet, set this
 		// algorithm as the winning one.
 		int tempRatio = (Integer.parseInt(results[3]) * Integer.parseInt(results[4])) / Integer.parseInt(results[0]);
+		tempRatio = Integer.parseInt(results[4]);
 
 		if(debug)
-			System.out.println("Winning Ratio: " + WINNING_RATIO + "\nCurrent Ratio: " + tempRatio + " = (" +
+			System.out.println("Winning Ratio: " + WORKING_RATIO + "\nCurrent Ratio: " + tempRatio + " = (" +
 			                   Integer.parseInt(results[3]) + " * " + Integer.parseInt(results[4]) + ") / " +
 			                   Integer.parseInt(results[0]));
 
-		if(tempRatio < WINNING_RATIO || WINNING_RATIO == 0)
+		if(tempRatio < WORKING_RATIO || WORKING_RATIO == 0)
 		{
-			WINNING_RATIO = tempRatio;
+			if(debug)
+				System.out.println("Ratio changed from " + WORKING_RATIO + " to " + tempRatio);
+			WORKING_RATIO = tempRatio;
+			switch(results[1])
+			{
+				case("In Order"):
+					IN_ORDER_WINNER = results[2];
+					IN_ORDER_RATIO = tempRatio;
+					break;
+				case("Reverse Order"):
+					RE_ORDER_WINNER = results[2];
+					RE_ORDER_RATIO = tempRatio;
+					break;
+				case("Almost Order"):
+					AL_ORDER_WINNER = results[2];
+					AL_ORDER_RATIO = tempRatio;
+					break;
+				case("Random Order"):
+					RA_ORDER_WINNER = results[2];
+					RA_ORDER_RATIO = tempRatio;
+			}
 			TXT_FLD_CURRENT_WINNER.setText(results[2]);
-		}
-
-		//Reset testList to avoid sorting an inorder list on new sorts
-		if(RDO_IN.isSelected())
-		{
-			testList = Sort.inOrder.clone();
-			if(debug)
-			{
-				System.out.println("Resetting testList to inOrder: ");
-				for(int i : Sort.inOrder)
-					System.out.print(" " + i);
-			}
-		}
-		if(RDO_REVERSE.isSelected())
-		{
-			testList = Sort.reverseOrder.clone();
-			if(debug)
-			{
-				System.out.println("Resetting testList to reverseOrder: ");
-				for(int i : Sort.reverseOrder)
-					System.out.print(" " + i);
-			}
-		}
-		if(RDO_ALMOST.isSelected())
-		{
-			testList = Sort.almostOrder.clone();
-			if(debug)
-			{
-				System.out.println("Resetting testList to almostOrder: ");
-				for(int i : Sort.almostOrder)
-					System.out.print(" " + i);
-			}
-		}
-		if(RDO_RANDOM.isSelected())
-		{
-			testList = Sort.randomOrder.clone();
-			if(debug)
-			{
-				System.out.println("Resetting testList to randomOrder: ");
-				for(int i : Sort.randomOrder)
-					System.out.print(" " + i);
-			}
 		}
 	}
 }
