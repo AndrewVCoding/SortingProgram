@@ -503,6 +503,31 @@ public class Sort
 		return new String[]{"" + array.length, dataType, "Radix Sort", "" + comparisons, "" + movements, "" + time};
 	}
 
+	@// TODO: 07/13/2017 MAKE A BETTER RADIX FUNCTION!
+	public static String[] betterRadixSort(int[] arrayIn, String dataType)
+	{
+		array = arrayIn;
+		if(debug)
+			printArray();
+
+		comparisons = 0;
+		movements = 0;
+
+		start = System.currentTimeMillis();
+		//Start Algorithm here*****************************************************************************************
+
+		int e = 0;
+
+		end = System.currentTimeMillis();
+		//Algorithm is finished****************************************************************************************
+		if(debug)
+			printArray();
+
+		time = end - start;
+
+		return new String[]{"" + array.length, dataType, "Radix Sort", "" + comparisons, "" + movements, "" + time};
+	}
+
 	/**
 	 * Prints the current working array for debugging purposes
 	 */

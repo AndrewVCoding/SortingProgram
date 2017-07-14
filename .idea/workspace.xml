@@ -44,8 +44,8 @@
       <file leaf-file-name="Sort.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Sort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="403" column="4" lean-forward="false" selection-start-line="403" selection-start-column="4" selection-end-line="403" selection-end-column="4" />
+            <state relative-caret-position="229">
+              <caret line="505" column="55" lean-forward="false" selection-start-line="505" selection-start-column="55" selection-end-line="505" selection-end-column="55" />
               <folding>
                 <element signature="method#quickSort#0;class#Sort#0" expanded="false" />
                 <element signature="method#quickSortRecursive#0;class#Sort#0" expanded="false" />
@@ -64,9 +64,15 @@
       <file leaf-file-name="GenerateList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GenerateList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="-298">
               <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-              <folding />
+              <folding>
+                <element signature="method#inOrder#0;class#GenerateList#0" expanded="false" />
+                <element signature="method#reverseOrder#0;class#GenerateList#0" expanded="false" />
+                <element signature="method#almostOrder#0;class#GenerateList#0" expanded="false" />
+                <element signature="method#randomOrder#0;class#GenerateList#0" expanded="false" />
+                <element signature="method#display#0;class#GenerateList#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -403,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1500003668704</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="All sorting algorithms are working.&#10;List Generator is working&#10;Results are displaying correctly&#10;The program currently meets the minimum requirements!">
+      <created>1500006034967</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1500006034967</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -544,16 +557,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GenerateList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="-298">
           <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="method#inOrder#0;class#GenerateList#0" expanded="false" />
+            <element signature="method#reverseOrder#0;class#GenerateList#0" expanded="false" />
+            <element signature="method#almostOrder#0;class#GenerateList#0" expanded="false" />
+            <element signature="method#randomOrder#0;class#GenerateList#0" expanded="false" />
+            <element signature="method#display#0;class#GenerateList#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Sort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="403" column="4" lean-forward="false" selection-start-line="403" selection-start-column="4" selection-end-line="403" selection-end-column="4" />
+        <state relative-caret-position="229">
+          <caret line="505" column="55" lean-forward="false" selection-start-line="505" selection-start-column="55" selection-end-line="505" selection-end-column="55" />
           <folding>
             <element signature="method#quickSort#0;class#Sort#0" expanded="false" />
             <element signature="method#quickSortRecursive#0;class#Sort#0" expanded="false" />

@@ -7,7 +7,7 @@ public class GenerateList
 	/**
 	 * used to increase the size of the numbers generated within the arrays
 	 */
-	private static int multiplier = 10;
+	private static int multiplier = 100;
 
 	/**
 	 * Generates an ordered array of unique integers ranging from 0-length
@@ -102,6 +102,10 @@ public class GenerateList
 		return output;
 	}
 
+	/**
+	 * Displays an array of integers
+	 * @param array
+	 */
 	private static void display(int[] array)
 	{
 		System.out.println();
