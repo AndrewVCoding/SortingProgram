@@ -10,6 +10,8 @@ public class Sort
 	static private int length;
 	static private int[] tempMergArr;
 
+	static private boolean debug = true;
+
 	/**
 	 * Performs Insertion Sort on the given array of integers
 	 *
@@ -20,7 +22,8 @@ public class Sort
 	public static String[] insertionSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
-		printArray();
+		if(debug)
+			printArray();
 
 		comparisons = 0;
 		movements = 0;
@@ -47,7 +50,8 @@ public class Sort
 		}
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
+		if(debug)
+			printArray();
 
 		time = end - start;
 
@@ -65,7 +69,8 @@ public class Sort
 	public static String[] selectionSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
-		printArray();
+		if(debug)
+			printArray();
 
 		comparisons = 0;
 		movements = 0;
@@ -97,7 +102,8 @@ public class Sort
 		}
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
+		if(debug)
+			printArray();
 
 		time = end - start;
 
@@ -115,7 +121,8 @@ public class Sort
 	public static String[] quickSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
-		printArray();
+		if(debug)
+			printArray();
 
 		comparisons = 0;
 		movements = 0;
@@ -126,7 +133,8 @@ public class Sort
 
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
+		if(debug)
+			printArray();
 
 		time = end - start;
 
@@ -208,7 +216,8 @@ public class Sort
 	public static String[] mergeSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
-		printArray();
+		if(debug)
+			printArray();
 
 		comparisons = 0;
 		movements = 0;
@@ -222,7 +231,8 @@ public class Sort
 
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
+		if(debug)
+			printArray();
 
 		time = end - start;
 
@@ -305,7 +315,8 @@ public class Sort
 	public static String[] heapSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
-		printArray();
+		if(debug)
+			printArray();
 
 		comparisons = 0;
 		movements = 0;
@@ -322,7 +333,7 @@ public class Sort
 		}
 
 		//Extract each element from the heap
-		for (int i=n-1; i>=0; i--)
+		for(int i = n - 1; i >= 0; i--)
 		{
 			// Move current root to end
 			int temp = array[0];
@@ -335,7 +346,8 @@ public class Sort
 
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
+		if(debug)
+			printArray();
 
 		time = end - start;
 
@@ -383,6 +395,7 @@ public class Sort
 
 	/**
 	 * Performs Radix Sort on an array of integers
+	 *
 	 * @param arrayIn
 	 * @param dataType
 	 * @return
@@ -390,7 +403,8 @@ public class Sort
 	public static String[] radixSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
-		printArray();
+		if(debug)
+			printArray();
 
 		comparisons = 0;
 		movements = 0;
@@ -430,6 +444,7 @@ public class Sort
 					temp = temp / 10;
 				}
 
+
 				/*If any index is encountered that is not 0 after this iteration, keep sorting. Otherwise it is
 				already sorted.
 				EXAMPLE: i = 354
@@ -437,8 +452,11 @@ public class Sort
 				      2:  35%10 = 5     35/10 = 3
 				      3:   3%10 = 3      3/10 = 0
 				      4:   0%10 = 0      0/10 = 0
+
+				Except this obviously won't work if all the numbers happen to have a 0 in the same place...
+				Instead it should be temp...
 				*/
-				if(index != 0)
+				if(temp != 0)
 					keepSorting = true;
 
 				//Create a new bucket with the value
@@ -477,7 +495,8 @@ public class Sort
 
 		end = System.currentTimeMillis();
 		//Algorithm is finished****************************************************************************************
-		printArray();
+		if(debug)
+			printArray();
 
 		time = end - start;
 
@@ -489,6 +508,7 @@ public class Sort
 	 */
 	private static void printArray()
 	{
+		System.out.println();
 		if(array != null)
 			for(int i : array)
 				System.out.print(" " + i);
