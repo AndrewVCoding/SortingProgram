@@ -27,26 +27,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Interface.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Interface.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Interface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="46" lean-forward="false" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+            <state relative-caret-position="348">
+              <caret line="566" column="52" lean-forward="false" selection-start-line="566" selection-start-column="52" selection-end-line="566" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#Interface#0;class#Interface#0" expanded="false" />
                 <element signature="method#createBtnPanel#0;class#Interface#0" expanded="false" />
-                <element signature="method#createListPanel#0;class#Interface#0" expanded="false" />
                 <element signature="method#createResultPanel#0;class#Interface#0" expanded="false" />
+                <element signature="method#stateChanged#0;class#Interface#0" expanded="false" />
+                <element signature="method#actionPerformed#0;class#Interface#0" expanded="false" />
+                <element signature="method#displayResults#0;class#Interface#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sort.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Sort.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Sort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="399" column="14" lean-forward="true" selection-start-line="399" selection-start-column="14" selection-end-line="399" selection-end-column="14" />
+            <state relative-caret-position="-243">
+              <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
               <folding>
                 <element signature="method#insertionSort#0;class#Sort#0" expanded="false" />
                 <element signature="method#selectionSort#0;class#Sort#0" expanded="false" />
@@ -68,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/src/GenerateList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+              <caret line="9" column="37" lean-forward="false" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
               <folding>
                 <element signature="method#inOrder#0;class#GenerateList#0" expanded="false" />
                 <element signature="method#reverseOrder#0;class#GenerateList#0" expanded="false" />
@@ -123,9 +126,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/driver.java" />
         <option value="$PROJECT_DIR$/src/SortDebugMode.java" />
-        <option value="$PROJECT_DIR$/src/Interface.java" />
         <option value="$PROJECT_DIR$/src/GenerateList.java" />
         <option value="$PROJECT_DIR$/src/Sort.java" />
+        <option value="$PROJECT_DIR$/src/Interface.java" />
       </list>
     </option>
   </component>
@@ -433,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1500006876415</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="This implements a much better implementation of radix sort that is actually competitive with quick sort.">
+      <created>1500046280719</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1500046280720</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -482,7 +492,8 @@
     <MESSAGE value="All sorting algorithms are working.&#10;Need to do: List Generator" />
     <MESSAGE value="All sorting algorithms are working.&#10;List Generator is working&#10;Results are displaying correctly&#10;The program currently meets the minimum requirements!" />
     <MESSAGE value="Radix Sort is incredibly poor the way I've implemented it. Need to make it better... Much better." />
-    <option name="LAST_COMMIT_MESSAGE" value="Radix Sort is incredibly poor the way I've implemented it. Need to make it better... Much better." />
+    <MESSAGE value="This implements a much better implementation of radix sort that is actually competitive with quick sort." />
+    <option name="LAST_COMMIT_MESSAGE" value="This implements a much better implementation of radix sort that is actually competitive with quick sort." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -509,9 +520,12 @@
           <caret line="434" column="60" lean-forward="false" selection-start-line="434" selection-start-column="60" selection-end-line="434" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#Interface#0;class#Interface#0" expanded="false" />
             <element signature="method#createBtnPanel#0;class#Interface#0" expanded="false" />
-            <element signature="method#createListPanel#0;class#Interface#0" expanded="false" />
             <element signature="method#createResultPanel#0;class#Interface#0" expanded="false" />
+            <element signature="method#stateChanged#0;class#Interface#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#Interface#0" expanded="false" />
+            <element signature="method#displayResults#0;class#Interface#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -602,9 +616,12 @@
           <caret line="17" column="67" lean-forward="true" selection-start-line="17" selection-start-column="67" selection-end-line="17" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#Interface#0;class#Interface#0" expanded="false" />
             <element signature="method#createBtnPanel#0;class#Interface#0" expanded="false" />
-            <element signature="method#createListPanel#0;class#Interface#0" expanded="false" />
             <element signature="method#createResultPanel#0;class#Interface#0" expanded="false" />
+            <element signature="method#stateChanged#0;class#Interface#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#Interface#0" expanded="false" />
+            <element signature="method#displayResults#0;class#Interface#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -635,23 +652,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Interface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="46" lean-forward="false" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#createBtnPanel#0;class#Interface#0" expanded="false" />
-            <element signature="method#createListPanel#0;class#Interface#0" expanded="false" />
-            <element signature="method#createResultPanel#0;class#Interface#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GenerateList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <caret line="9" column="37" lean-forward="false" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
           <folding>
             <element signature="method#inOrder#0;class#GenerateList#0" expanded="false" />
             <element signature="method#reverseOrder#0;class#GenerateList#0" expanded="false" />
@@ -664,8 +668,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Sort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="399" column="14" lean-forward="true" selection-start-line="399" selection-start-column="14" selection-end-line="399" selection-end-column="14" />
+        <state relative-caret-position="-243">
+          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding>
             <element signature="method#insertionSort#0;class#Sort#0" expanded="false" />
             <element signature="method#selectionSort#0;class#Sort#0" expanded="false" />
@@ -678,6 +682,22 @@
             <element signature="method#heapSort#0;class#Sort#0" expanded="false" />
             <element signature="method#heapify#0;class#Sort#0" expanded="false" />
             <element signature="method#betterRadixSort#0;class#Sort#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="566" column="52" lean-forward="false" selection-start-line="566" selection-start-column="52" selection-end-line="566" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Interface#0;class#Interface#0" expanded="false" />
+            <element signature="method#createBtnPanel#0;class#Interface#0" expanded="false" />
+            <element signature="method#createResultPanel#0;class#Interface#0" expanded="false" />
+            <element signature="method#stateChanged#0;class#Interface#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#Interface#0" expanded="false" />
+            <element signature="method#displayResults#0;class#Interface#0" expanded="false" />
           </folding>
         </state>
       </provider>

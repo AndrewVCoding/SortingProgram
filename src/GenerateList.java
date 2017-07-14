@@ -7,7 +7,7 @@ public class GenerateList
 	/**
 	 * used to increase the size of the numbers generated within the arrays
 	 */
-	private static int multiplier = 1000;
+	private static int multiplier = 1;
 
 	/**
 	 * Generates an ordered array of unique integers ranging from 0-length

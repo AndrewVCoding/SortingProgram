@@ -1,3 +1,5 @@
+import com.sun.javafx.binding.StringFormatter;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
@@ -9,9 +11,17 @@ import java.awt.event.ActionListener;
 //Now to see how changes show up
 //But what about this?
 
+/**
+ * The interface for comparing six sorting algorithms: Insertion Sort, Selection Sort, Quick Sort, Merge Sort, Heap
+ * Sort, and Radix Sort.
+ * <p>
+ * The comparison involves the number of movements(or array accesses) and comparisons made by each algorithm per
+ * element sorted as well as the time to sort. Since movements are more computationally expensive then comparisons
+ * they have a higher weight when computing ratio.
+ */
 class Interface extends JFrame implements ChangeListener, ActionListener
 {
-	private static final boolean debug = false;
+	private static final boolean debug = true;
 
 	//need a button panel
 	private final JPanel PANEL_BTNS = new JPanel();
@@ -38,7 +48,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 	private final JButton BTN_GENERATE_LIST = new JButton();
 
 	//The slider to set the number of elements in the list
-	private final JSlider SLIDER_LIST = new JSlider(JSlider.HORIZONTAL, 0, 30000, 5000);
+	private final JSlider SLIDER_LIST = new JSlider(JSlider.HORIZONTAL, 2, 100000, 5000);
 
 	//The text field showing the number of elements
 	private final JTextField TXT_FLD_LIST_ELEMENTS = new JTextField();
@@ -50,6 +60,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 	private JLabel LBL_COMPARISONS = new JLabel("Comparisons:");
 	private JLabel LBL_MOVEMENTS = new JLabel("Movements:");
 	private JLabel LBL_TOTAL_TIME = new JLabel("Total time:");
+	private JLabel LBL_RATIO = new JLabel("Ratio");
 	private JLabel LBL_CURRENT_WINNER = new JLabel("Current Winner");
 	private JTextField TXT_FLD_LIST_SIZE = new JTextField();
 	private JTextField TXT_FLD_DATA_TYPE = new JTextField();
@@ -57,14 +68,15 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 	private JTextField TXT_FLD_COMPARISONS = new JTextField();
 	private JTextField TXT_FLD_MOVEMENTS = new JTextField();
 	private JTextField TXT_FLD_TOTAL_TIME = new JTextField();
+	private JTextField TXT_FLD_RATIO = new JTextField();
 	private JTextField TXT_FLD_CURRENT_WINNER = new JTextField();
 
 	//To determine the winning algorithm for the current list, multiply the (movements*comparisons)/(number of
 	// elements)
-	private int IN_ORDER_RATIO = 0;
-	private int RE_ORDER_RATIO = 0;
-	private int AL_ORDER_RATIO = 0;
-	private int RA_ORDER_RATIO = 0;
+	private double IN_ORDER_RATIO = 0;
+	private double RE_ORDER_RATIO = 0;
+	private double AL_ORDER_RATIO = 0;
+	private double RA_ORDER_RATIO = 0;
 
 	private String IN_ORDER_WINNER = "No algorithms have been run on this list";
 	private String RE_ORDER_WINNER = "No algorithms have been run on this list";
@@ -78,7 +90,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 
 	private String DATA_TYPE;
 	private int[] WORKING_LIST;
-	private int WORKING_RATIO;
+	private double WORKING_RATIO;
 
 	public Interface()
 	{
@@ -243,7 +255,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		BTN_GENERATE_LIST.setText("Generate List");
 		BTN_GENERATE_LIST.setMinimumSize(new Dimension(400, 40));
 		BTN_GENERATE_LIST.setPreferredSize(new Dimension(400, 100));
-		TXT_FLD_LIST_ELEMENTS.setMaximumSize(new Dimension(40, 20));
+		TXT_FLD_LIST_ELEMENTS.setMaximumSize(new Dimension(60, 20));
 
 		listLayout.setAutoCreateContainerGaps(true);
 		listLayout.setAutoCreateGaps(true);
@@ -273,6 +285,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		TXT_FLD_COMPARISONS.setEditable(false);
 		TXT_FLD_MOVEMENTS.setEditable(false);
 		TXT_FLD_TOTAL_TIME.setEditable(false);
+		TXT_FLD_RATIO.setEditable(false);
 		TXT_FLD_CURRENT_WINNER.setEditable(false);
 
 		TXT_FLD_LIST_SIZE.setVisible(true);
@@ -281,6 +294,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		TXT_FLD_COMPARISONS.setVisible(true);
 		TXT_FLD_MOVEMENTS.setVisible(true);
 		TXT_FLD_TOTAL_TIME.setVisible(true);
+		TXT_FLD_RATIO.setVisible(true);
 		TXT_FLD_CURRENT_WINNER.setVisible(true);
 
 		TXT_FLD_LIST_SIZE.setText("0");
@@ -289,6 +303,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		TXT_FLD_COMPARISONS.setText("0");
 		TXT_FLD_MOVEMENTS.setText("0");
 		TXT_FLD_TOTAL_TIME.setText("0");
+		TXT_FLD_RATIO.setText("0");
 		TXT_FLD_CURRENT_WINNER.setText("No algorithm has been run on this list yet");
 
 		LBL_LIST_SIZE.setVisible(true);
@@ -297,6 +312,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		LBL_COMPARISONS.setVisible(true);
 		LBL_MOVEMENTS.setVisible(true);
 		LBL_TOTAL_TIME.setVisible(true);
+		LBL_RATIO.setVisible(true);
 		LBL_CURRENT_WINNER.setVisible(true);
 
 		//Resize components
@@ -322,17 +338,20 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		internalLayout.setAutoCreateGaps(true);
 
 		internalLayout.linkSize(SwingConstants.HORIZONTAL, TXT_FLD_LIST_SIZE, TXT_FLD_DATA_TYPE, TXT_FLD_SORT_ALG,
-		                        TXT_FLD_COMPARISONS, TXT_FLD_MOVEMENTS, TXT_FLD_TOTAL_TIME);
+		                        TXT_FLD_COMPARISONS, TXT_FLD_MOVEMENTS, TXT_FLD_TOTAL_TIME, TXT_FLD_RATIO);
 		internalLayout.linkSize(SwingConstants.VERTICAL, TXT_FLD_LIST_SIZE, TXT_FLD_DATA_TYPE, TXT_FLD_SORT_ALG,
 		                        TXT_FLD_COMPARISONS, TXT_FLD_MOVEMENTS, TXT_FLD_TOTAL_TIME, LBL_LIST_SIZE,
-		                        LBL_DATA_TYPE, LBL_SORT_ALG, LBL_COMPARISONS, LBL_MOVEMENTS, LBL_TOTAL_TIME);
+		                        LBL_DATA_TYPE, LBL_SORT_ALG, LBL_COMPARISONS, LBL_MOVEMENTS, LBL_TOTAL_TIME,
+		                        LBL_RATIO);
 
 		GroupLayout.ParallelGroup labelGroup = internalLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 				.addComponent(LBL_LIST_SIZE).addComponent(LBL_DATA_TYPE).addComponent(LBL_SORT_ALG)
-				.addComponent(LBL_COMPARISONS).addComponent(LBL_MOVEMENTS).addComponent(LBL_TOTAL_TIME);
+				.addComponent(LBL_COMPARISONS).addComponent(LBL_MOVEMENTS).addComponent(LBL_TOTAL_TIME)
+				.addComponent(LBL_RATIO);
 		GroupLayout.ParallelGroup fieldGroup = internalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addComponent(TXT_FLD_LIST_SIZE).addComponent(TXT_FLD_DATA_TYPE).addComponent(TXT_FLD_SORT_ALG)
-				.addComponent(TXT_FLD_COMPARISONS).addComponent(TXT_FLD_MOVEMENTS).addComponent(TXT_FLD_TOTAL_TIME);
+				.addComponent(TXT_FLD_COMPARISONS).addComponent(TXT_FLD_MOVEMENTS).addComponent(TXT_FLD_TOTAL_TIME)
+				.addComponent(TXT_FLD_RATIO);
 
 		GroupLayout.ParallelGroup listSizeGroup = internalLayout.createParallelGroup().addComponent(LBL_LIST_SIZE)
 				.addComponent(TXT_FLD_LIST_SIZE);
@@ -346,25 +365,36 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 				.addComponent(TXT_FLD_MOVEMENTS);
 		GroupLayout.ParallelGroup totalTimeGroup = internalLayout.createParallelGroup().addComponent(LBL_TOTAL_TIME)
 				.addComponent(TXT_FLD_TOTAL_TIME);
+		GroupLayout.ParallelGroup ratioGroup = internalLayout.createParallelGroup().addComponent(LBL_RATIO)
+				.addComponent(TXT_FLD_RATIO);
 
 		internalLayout
 				.setHorizontalGroup(internalLayout.createSequentialGroup().addGroup(labelGroup).addGroup(fieldGroup));
 		internalLayout.setVerticalGroup(
 				internalLayout.createSequentialGroup().addGroup(listSizeGroup).addGroup(dataTypeGroup)
 						.addGroup(sortAlgGroup).addGroup(comparisonsGroup).addGroup(movementsGroup)
-						.addGroup(totalTimeGroup));
+						.addGroup(totalTimeGroup).addGroup(ratioGroup));
 
 		internalPanel.setLayout(internalLayout);
-		//**************************************************************************************************************
+		//*************************************************************************************************************
+
+
+		//Create the winner panel**************************************************************************************
+		JPanel winner = new JPanel();
+		winner.add(TXT_FLD_CURRENT_WINNER);
+		TitledBorder winnerBorder = new TitledBorder("WINNER");
+		winnerBorder.setTitleJustification(TitledBorder.CENTER);
+		winnerBorder.setTitlePosition(TitledBorder.TOP);
+		winner.setBorder(winnerBorder);
+		//*************************************************************************************************************
 
 		GroupLayout reportLayout = new GroupLayout(outerPanel);
-		reportLayout.linkSize(SwingConstants.HORIZONTAL, internalPanel, LBL_CURRENT_WINNER, TXT_FLD_CURRENT_WINNER);
+		reportLayout.linkSize(SwingConstants.HORIZONTAL, internalPanel, winner);
 		reportLayout.setVerticalGroup(
-				reportLayout.createSequentialGroup().addComponent(internalPanel).addComponent(LBL_CURRENT_WINNER)
-						.addComponent(TXT_FLD_CURRENT_WINNER));
+				reportLayout.createSequentialGroup().addComponent(internalPanel).addComponent(winner));
 		reportLayout.setHorizontalGroup(
 				reportLayout.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(internalPanel)
-						.addComponent(LBL_CURRENT_WINNER).addComponent(TXT_FLD_CURRENT_WINNER));
+						.addComponent(winner));
 		outerPanel.setLayout(reportLayout);
 
 		PANEL_REPORT.add(outerPanel);
@@ -385,6 +415,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		if(e.getSource() == TXT_FLD_LIST_ELEMENTS)
 			SLIDER_LIST.setValue(Integer.parseInt(TXT_FLD_LIST_ELEMENTS.getText()));
 
+		//When a radio button is selected, show the current winning algorithm for that data type and the current list
 		if(e.getSource() == RDO_IN)
 		{
 			DATA_TYPE = "In Order";
@@ -414,6 +445,7 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 			WORKING_RATIO = RA_ORDER_RATIO;
 		}
 
+		//When the corresponding button is pressed, display the results of sorting the list with that algorithm
 		if(e.getSource() == BTN_SELECTION)
 			displayResults(Sort.selectionSort(WORKING_LIST.clone(), DATA_TYPE));
 		if(e.getSource() == BTN_INSERTION)
@@ -427,32 +459,33 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		if(e.getSource() == BTN_RADIX)
 			displayResults(Sort.betterRadixSort(WORKING_LIST.clone(), DATA_TYPE));
 
+		//When a new list is generated, clear the results
 		if(e.getSource() == BTN_GENERATE_LIST)
 		{
 			switch(DATA_TYPE)
 			{
-				case("In Order"):
+				case ("In Order"):
 					IN_ORDER_LIST = GenerateList.inOrder(SLIDER_LIST.getValue());
 					WORKING_LIST = IN_ORDER_LIST;
 					IN_ORDER_RATIO = 0;
 					IN_ORDER_WINNER = "No algorithm has been run on this list yet";
 					TXT_FLD_CURRENT_WINNER.setText(IN_ORDER_WINNER);
 					break;
-				case("Reverse Order"):
+				case ("Reverse Order"):
 					RE_ORDER_LIST = GenerateList.reverseOrder(SLIDER_LIST.getValue());
 					WORKING_LIST = RE_ORDER_LIST;
 					RE_ORDER_RATIO = 0;
 					RE_ORDER_WINNER = "No algorithm has been run on this list yet";
 					TXT_FLD_CURRENT_WINNER.setText(RE_ORDER_WINNER);
 					break;
-				case("Almost Order"):
+				case ("Almost Order"):
 					AL_ORDER_LIST = GenerateList.almostOrder(SLIDER_LIST.getValue());
 					WORKING_LIST = AL_ORDER_LIST;
 					AL_ORDER_RATIO = 0;
 					AL_ORDER_WINNER = "No algorithm has been run on this list yet";
 					TXT_FLD_CURRENT_WINNER.setText(AL_ORDER_WINNER);
 					break;
-				case("Random Order"):
+				case ("Random Order"):
 					RA_ORDER_LIST = GenerateList.randomOrder(SLIDER_LIST.getValue());
 					WORKING_LIST = RA_ORDER_LIST;
 					RA_ORDER_RATIO = 0;
@@ -465,6 +498,11 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 		}
 	}
 
+	/**
+	 * Display the results returned from a sorting algorithm
+	 *
+	 * @param results
+	 */
 	public void displayResults(String[] results)
 	{
 		TXT_FLD_LIST_SIZE.setText(results[0]);
@@ -476,13 +514,13 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 
 		//If the ratio is better than the current winning ratio, or if there is no winning ratio yet, set this
 		// algorithm as the winning one.
-		int tempRatio = (Integer.parseInt(results[3]) * Integer.parseInt(results[4])) / Integer.parseInt(results[0]);
-		tempRatio = Integer.parseInt(results[4]);
+		double tempRatio = ratio(Double.parseDouble(results[4]), Double.parseDouble(results[3]),
+		                         Double.parseDouble(results[5]), Double.parseDouble(results[0]), results[2]);
+
+		TXT_FLD_RATIO.setText(String.format("%1$,.2f", tempRatio));
 
 		if(debug)
-			System.out.println("Winning Ratio: " + WORKING_RATIO + "\nCurrent Ratio: " + tempRatio + " = (" +
-			                   Integer.parseInt(results[3]) + " * " + Integer.parseInt(results[4]) + ") / " +
-			                   Integer.parseInt(results[0]));
+			System.out.println("Working Ratio: " + WORKING_RATIO + "\nCurrent Ratio: " + tempRatio);
 
 		if(tempRatio < WORKING_RATIO || WORKING_RATIO == 0)
 		{
@@ -491,23 +529,47 @@ class Interface extends JFrame implements ChangeListener, ActionListener
 			WORKING_RATIO = tempRatio;
 			switch(results[1])
 			{
-				case("In Order"):
+				case ("In Order"):
 					IN_ORDER_WINNER = results[2];
 					IN_ORDER_RATIO = tempRatio;
 					break;
-				case("Reverse Order"):
+				case ("Reverse Order"):
 					RE_ORDER_WINNER = results[2];
 					RE_ORDER_RATIO = tempRatio;
 					break;
-				case("Almost Order"):
+				case ("Almost Order"):
 					AL_ORDER_WINNER = results[2];
 					AL_ORDER_RATIO = tempRatio;
 					break;
-				case("Random Order"):
+				case ("Random Order"):
 					RA_ORDER_WINNER = results[2];
 					RA_ORDER_RATIO = tempRatio;
 			}
-			TXT_FLD_CURRENT_WINNER.setText(results[2]);
+			TXT_FLD_CURRENT_WINNER.setText(results[2] + " with ratio: " + String.format("%1$,.2f", WORKING_RATIO));
 		}
+	}
+
+	/**
+	 * Rate the performance of an algorithm based on number of movements and comparisons per element and the total time
+	 *
+	 * @param m
+	 * @param c
+	 * @param t
+	 * @return
+	 */
+	private double ratio(Double m, Double c, Double t, Double n, String alg)
+	{
+		//First bring all values lower to be more manageable
+		//Movements are given a higher weight than comparisons since they are more expensive
+		double mNormal = (m) / (Math.abs(m) + (1 * n));
+		double cNormal = (c) / (Math.abs(c) + (1 * n));
+		//Time should also be an important factor with high weight
+		double tNormal = (t) / (Math.abs(t) + (0.0001 * n));
+		if(debug)
+			System.out.println(
+					"\nData Type: " + DATA_TYPE + "\nSorting Algorithm: " + alg + "\nm: " + m + " => " + mNormal +
+					"\nc: " + c + " => " + "" + cNormal + "\nt: " + t + " =>" + " " + tNormal);
+
+		return (2 * mNormal + cNormal + 3 * tNormal) / 6;
 	}
 }

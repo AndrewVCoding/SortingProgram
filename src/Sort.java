@@ -1,7 +1,7 @@
 public class Sort
 {
-	static private int comparisons;
-	static private int movements;
+	static private long comparisons;
+	static private long movements;
 	static private long time;
 	static private long start;
 	static private long end;
