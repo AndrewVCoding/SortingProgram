@@ -503,7 +503,7 @@ public class Sort
 		return new String[]{"" + array.length, dataType, "Radix Sort", "" + comparisons, "" + movements, "" + time};
 	}
 
-	@// TODO: 07/13/2017 MAKE A BETTER RADIX FUNCTION!
+	// TODO: 07/13/2017 MAKE A BETTER RADIX FUNCTION!
 	public static String[] betterRadixSort(int[] arrayIn, String dataType)
 	{
 		array = arrayIn;
